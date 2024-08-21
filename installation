@@ -10,8 +10,6 @@ apt install postgresql
 
 # Apt Repository
 
-
-
 sudo apt install -y postgresql-common
 sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
 
@@ -21,12 +19,6 @@ sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail htt
 sudo sh -c 'echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 sudo apt update
 sudo apt -y install postgresql
-
-
-
-
-
-
 
 
 ### https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-linux/
