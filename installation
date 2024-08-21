@@ -1,4 +1,5 @@
 
+# --------------------------------------------------------------------------------------------------------------------------------#
 ### https://www.postgresql.org/download/linux/ubuntu/
 
 ** August 8th, 2024: PostgreSQL 16.4, 15.8, 14.13, 13.16, 12.20, and 17 Beta 3 Released! 
@@ -20,7 +21,7 @@ sudo sh -c 'echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresq
 sudo apt update
 sudo apt -y install postgresql
 
-
+# --------------------------------------------------------------------------------------------------------------------------------#
 ### https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-linux/
 
 sudo apt update
@@ -34,5 +35,7 @@ sudo apt install postgresql-16 postgresql-contrib-16
 
 sudo systemctl start postgresql
 sudo systemctl enable postgresql
+# --------------------------------------------------------------------------------------------------------------------------------#
+
 
 
