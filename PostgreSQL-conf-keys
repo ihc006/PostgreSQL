@@ -1,0 +1,21 @@
+
+# https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-linux/
+
+
+sudo nano /etc/postgresql/16/main/postgresql.conf
+
+  listen_addresses = '*'
+
+sudo systemctl restart postgresql
+
+sudo ufw allow 5432/tcp
+
+
+# Connect to the PostgreSQL database server       using the postgres user:
+sudo -u postgres psql  
+
+ALTER USER postgres PASSWORD '<password>';
+
+\q
+
+
