@@ -2,30 +2,24 @@
 # ----------------------------------------------------------------------------------------------------------------------#
 # https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-linux/
 
-
 curl -O https://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip
 
 unzip dvdrental.zip
-
 sudo -u postgres psql
 
 create database dvdrental;
-
 \q    # quit the psql by using the \q command:
 
 pg_restore -U postgres --dbname=dvdrental --verbose dvdrental.tar
 
 psql
-
 \c dvdrental
 
 select count(*) from film;
-
          count
         -------
         1000
         (1 row)
-
 
 # ----------------------------------------------------------------------------------------------------------------------#
 
