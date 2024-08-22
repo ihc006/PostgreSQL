@@ -20,6 +20,28 @@ ALTER USER postgres PASSWORD '<password>';
 
 # From DG ----------------------------------------------------------------------------------------------------------------------------------------------#
 
+listen_addresses = '*'              # * means listen all of ips that run on that server    ---- changes requires restart
+port=5432                           # ---- changes requires restart
+
+max_connections =1000               # default is 100 but it depend on server resource and it must set according to application , db or others that will run on server ... avarage must chose....---- changes requires restart
+superuser_reserved_connection = 3   #  Reserved connection on terreble situaiton for maintaining DB---- changes requires restart 
+
+# tcp_keepalives_xxx params for droping connections when broked status of connection of DB....
+
+tcp_keepalives_idle = 0             # 0 means that ıt is default of OS  - 60-20-3 sn
+tcp_keepalives_interval = 0         # 0 means that ıt is default of OS
+tcp_keepalives_count = 0            # 0 means that ıt is default of OS
+tcp_user_timeout = 0                # 0 means that ıt is default of OS
+
+
+
+
+shared_buffers =  8GB                   # default 128 MB ........mın 128k ...... All of Queries run on this buffers  ... if you use all size of this ... Os chaches oversize  of this buffers... this occurs DoubleBuffer statement...
+                                        # if size is bigger , DoubleBuffer use Os ram capacity and it is not recommend....but up to 50 % OS ram capacity can set optimal decission 
+                                        # (when OS Ram size is not bigger then 64 GB and if so.... ypu must decide it to IO and process size)
+
+
+
 
 
 
