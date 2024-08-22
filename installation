@@ -59,9 +59,17 @@ usr/pgsql-12/bın/initdb --help            # to see details of initdb commands a
 
 -->$ psql     # go on
 
-# ********* /pgsql-xx/... / data and /pg_wal/  directories can located different disk or partition on ideal installation           ************** ****
-# at pg_wall directory IO bigger than pg_data directory.. so you must install them different area especially pg_wall
+# ************    /var/lib/pgsql/12/data/base   is PostgreSQL DB files directory         ************************
 
+# ********* /pgsql-xx/... / data and /pg_wal/  directories can located different disk or partition on ideal installation           ************** ****
+# at pg_wall directory IO ıs bigger than pg_data directory.. so you must install them different area especially pg_wall
+# ***** for performance , pg_wall must locate different ,  *****
+
+
+
+
+
+ 
 
 
 
