@@ -38,9 +38,10 @@ tcp_user_timeout = 0                # 0 means that ıt is default of OS
 
 shared_buffers =  8GB                   # default 128 MB ........mın 128k ...... All of Queries run on this buffers  ... if you use all size of this ... Os chaches oversize  of this buffers... this occurs DoubleBuffer statement...
                                         # if size is bigger , DoubleBuffer use Os ram capacity and it is not recommend....but up to 50 % OS ram capacity can set optimal decission 
-                                        # (when OS Ram size is not bigger then 64 GB and if so.... ypu must decide it to IO and process size)
+                                        # when OS Ram size is not bigger then 64 GB and if so.... you must decide it to IO and process size after monitoring DB.
+                                        # Writing IO is bigger than shared_buffers size must lower but Reading IO is bigger than it size must bigger.
 
-
+33:56
 
 
 
