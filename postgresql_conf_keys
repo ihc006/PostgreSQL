@@ -26,7 +26,7 @@ tcp_keepalives_interval = 0         # 0 means that ıt is default of OS
 tcp_keepalives_count = 0            # 0 means that ıt is default of OS
 tcp_user_timeout = 0                # 0 means that ıt is default of OS
 
-shared_buffers =  8GB                   #********* default 128 MB ........mın 128k ...... All of Queries run on this buffers  ... when you use all size of this ... Os chaches oversize  of this buffers... this occurs DoubleBuffer statement...
+shared_buffers =  8GB                   #********* default 128 MB ........mın 128k ....Recommended size is %25-30 of OS ram for small and middle layer companies but for large must set 8 to 16 GB .. All of Queries run on this buffers  ... when you use all size of this ... Os chaches oversize  of this buffers... this occurs DoubleBuffer statement...
                                         # if size is bigger , DoubleBuffer use Os ram capacity and it is not recommend....but up to 50 % OS ram capacity can set optimal decission 
                                         # when OS Ram size is not bigger then 64 GB and if so.... you must decide it to IO and process size after monitoring DB.
                                         # Writing IO is bigger than shared_buffers size must lower but Reading IO is bigger than it size must bigger.
@@ -36,12 +36,18 @@ huge_pages = try                      # on,off,try options..... ---- changes req
 
 mac_prepared_transactions = 0         # zero disables the feature........ it must same  up to max connection....you must sure about using prepared_transaction 
 
-work_mem = 4 MB                      # ********* default ıs 4MB..mın 64 kb..........  this params create a log file  and if a query is bigger than work_mem size... 
+work_mem = 4 MB                      # ********* default ıs 4MB..mın 64 kb.........optimum size is %25-30 of OS ram.  this params create a log file  and if a query is bigger than work_mem size... 
                                      # than that DB makes query on log file in dısk but it doesn't spare that bıgger query than work_mem size
+                                     #  if  At the same time / simultaneously query count is 100  and work_mem is 4 MB , postgresql use 100*4 MB=400 MB....
+                                     # Os ram = 16 GB ,, Simultaneusly queries count 50 ,, %25 x Os Ram = 16x0.25 = 4 GB ....4 GB / 50 = 82 Mb  .. 
+                                     # in this example : according to params work_mem must 82 Mb 
 
-maintenance_work_mem = 64 MB         # default ıs 64 mb..mın 4 mb......... 
+
+maintenance_work_mem = 1 GB         # default ıs 64 mb..mın 4 mb......... Max 1 GB ... it does not use bigger than 1 gb so pgsql's source codes
 autovacuum_work_mem = -1             # default is -1 ..mın 1 mb or -1..... 
  
+
+
 
 
 
