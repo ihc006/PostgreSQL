@@ -50,6 +50,8 @@ maintenance_work_mem = 1 GB         # default ıs 64 mb..mın 4 mb......... Max 
 autovacuum_work_mem = -1            # default is -1 ..mın 1 mb or -1..... 
  
 
+39:57 de kaldık
+
 
 
 
