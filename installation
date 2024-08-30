@@ -21,11 +21,11 @@ sudo sh -c 'echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresq
 sudo apt update
 sudo apt -y install postgresql    # postgresql-contrib  packet must install with
 
-# --------------------------------------------------------------------------------------------------------------------------------#
+#******-------------------------------------------------------------------------------------------------------------------------------#
 ### https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-linux/
 
-sudo apt update
-sudo apt install gnupg2 wget
+sudo apt update  -y
+sudo apt install gnupg2 wget -y 
 
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
@@ -35,7 +35,8 @@ sudo apt install postgresql-16 postgresql-contrib-16
 
 sudo systemctl start postgresql
 sudo systemctl enable postgresql
-# --------------------------------------------------------------------------------------------------------------------------------#
+
+#**********--------------------------------------------------------------------------------------------------------------------------------#
 
 
 postgresql-12-setup initdb      # initialize the db and update the db ............... this script is only setups from distributions of OS
@@ -81,6 +82,43 @@ usr/pgsql-12/bın/initdb --help            # to see details of initdb commands a
 
 
 # ----------------------------------------------------------------------------------------------------------------------#
+# https://www.linuxtechi.com/how-to-install-pgadmin-on-ubuntu/
+## pgadmin installing
+
+sudo apt update && sudo apt install curl -y
+
+curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --dearmor -o /usr/share/keyrings/packages-pgadmin-org.gpg
+sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/packages-pgadmin-org.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list && apt update'
+
+ sudo apt install pgadmin4 -y
+                            # pgAdmin Web Interface
+
+sudo /usr/pgadmin4/bin/setup-web.sh     
+
+     # Enter the email address and password to use for the initial pgAdmin user account:
+     # Email address: ciritci@gmail.com  Password:  Retype password:         
+ 
+     # pgAdmin 4 - Application Initialisation
+     # ======================================
+     # Creating storage and log directories...
+     # We can now configure the Apache Web server for you. This involves enabling the wsgi module and configuring the pgAdmin 4 application to mount at /pgadmin4. Do you wish to continue (y/n)? y
+     # The Apache web server is running and must be restarted for the pgAdmin 4 installation to complete. Continue (y/n)? y
+     # Apache successfully restarted. You can now start using pgAdmin 4 in web mode at http://127.0.0.1/pgadmin4
+
+
+
+sudo apt install pgadmin4-web 
+
+Host name/address: localhost
+Port: 5432
+Maintenance database: postgres
+Username: postgres
+Password: (Enter the password you set for the PostgreSQL user)
+
+Click “Save” to add the server.
+
+
+
 # ----------------------------------------------------------------------------------------------------------------------#
 # ----------------------------------------------------------------------------------------------------------------------#
 # ----------------------------------------------------------------------------------------------------------------------#

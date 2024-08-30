@@ -12,7 +12,7 @@ sudo -u postgres psql
 ALTER USER postgres PASSWORD '<password>';
 \q
 # From DG ----------------------------------------------------------------------------------------------------------------------------------------------#
-
+# for performance params
 listen_addresses = '*'              # * means listen all of ips that run on that server    ---- changes requires restart
 port=5432                           # ---- changes requires restart
 
@@ -35,7 +35,7 @@ shared_buffers =  8GB               #********* default 128 MB ........mın 128k 
                                     # ---- changes requires restart
 
 huge_pages = try                    # on,off,try options..... ---- changes requires restart......on DWH operation  or Reading  when you set this ... performance ups ... 
-                                    # activating this params ... pgsql uses os*linux sames options
+                                    # activating this params ... pgsql uses os*linux sames options  .. we must conf this params from tunning conf.... tuned.conf
 
 mac_prepared_transactions = 0       # zero disables the feature........ it must same  up to max connection....you must sure about using prepared_transaction 
 
@@ -49,14 +49,58 @@ work_mem = 4 MB                     # ********* default ıs 4MB..mın 64 kb.....
 maintenance_work_mem = 1 GB         # default ıs 64 mb..mın 4 mb......... Max 1 GB ... it does not use bigger than 1 gb so pgsql's source codes
 autovacuum_work_mem = -1            # default is -1 ..mın 1 mb or -1..... 
  
+temp_file_limit = -1                # limits per-process temp file space
 
-39:57 de kaldık
+max_files_per_process = 1000 
+
+vacuum_cost_delay = 0                  # 0-100 milliseconds (0 disables)
+vacuum_cost_page_hit = 1               # 0-10000 credits
+vacuum_cost_page_miss = 2              # 0-10000 credits
+vacuum_cost_page_dirty = 20            # 0-10000 credits
+vacuum_cost_limit = 200                # 1-10000 credits
+
+
+bgwriter_delay = 100ms                 # 10-10000ms between rounds  default 200ms
+bgwriter_lru_maxpages = 10000          # max buffers written/round, 0 disables   it must be 10ms times..... default 100ms
+bgwriter_lru_multiplier = 4.0          # 0-10.0 multiplier on buffers scanned/round... default 2
+bgwriter_flush_after = 512kB           # measured in pages, 0 disables
 
 
 
+effective_io_concurrency = 1           # 1-1000; 0 disables prefetching
+maintenance_io_concurrency = 10        # 1-1000; 0 disables prefetching
+max_worker_processes = 8               # (change requires restart)
+max_parallel_workers_per_gather = 2    # limited by max_parallel_workers
+max_parallel_maintenance_workers = 2   # limited by max_parallel_workers
+max_parallel_workers = 8               # number of max_worker_processes that
+                                       # can be used in parallel operations
 
 
+fsync = on                              # flush data to disk for crash safety
+                                        # (turning this off can cause
+                                        # unrecoverable data corruption)
 
+
+full_page_writes = on                  # recover from partial page writes
+#wal_log_hints = off                    # also do full page writes of non-critical updates
+                                        # (change requires restart)
+wal_compression = off                  # enables compression of full-page writes;
+                                        # off, pglz, lz4, zstd, or on
+
+
+wal_buffers = 64MB                       # min 32kB, -1 sets based on shared_buffers    -1 mesans 1/32  ...
+                                        # (change requires restart)
+
+
+checkpoint_timeout = 15min              # range 30s-1d... default 5 min... 
+max_wal_size = 8GB                     # default is 1GB  recommend is 16 GB
+min_wal_size = 2GB                      # default is 80 MB  recommend is 4GB
+checkpoint_completion_target = 0.9     # checkpoint target duration, 0.0 - 1.0
+
+seq_page_cost = 1.0                    # measured on an arbitrary scale.... default 1
+random_page_cost = 4.0                 # same scale as above..... default 4   ..recommend 1ç5
+
+effective_cache_size = 8GB             # default is 4GB but recommend is Os Ram size %50
 
 
 
