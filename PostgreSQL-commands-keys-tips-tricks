@@ -71,6 +71,39 @@ LIMIT 10;
 
 
 #----------------------------------------------------------------------------------------------------------------------#
+# sample calculation1 s
+max_connections = 100
+shared_buffers = 128 MB
+
+max_connections = 200
+shared_buffers = 256 MB
+
+kernel.shmmax   # max bytes of shared memory that can be allocate from RAM at kernel level
+               # this can be equal or more than shared_buffers
+
+# if ....ram on OS = 16 GB  ... verify existing value ...... cat /proc/sys/kernel/shmax
+
+kernel.shmmax = 10066329600 (10 GB)
+
+
+select * from 
+(slect count(*) used from pg_stat_activity ) query_1,
+(select setting::int res_for_super from pg_settings where name = $$superuser_reserved_connections$$) query_2,
+(select setting::int max_conn from pg_settingswhere name=$$max_connections$$) query_3;
+
+
+select sum(numbackends) from pg_stat_database;
+
+# for sample calc web sites  pgtune.leopard.in.ua
+
+
+
+
+
+
+
+
+
 
 # ----------------------------------------------------------------------------------------------------------------------#
 
