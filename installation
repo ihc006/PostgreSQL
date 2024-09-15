@@ -82,8 +82,7 @@ usr/pgsql-12/bın/initdb --help            # to see details of initdb commands a
 
 
 # ----------------------------------------------------------------------------------------------------------------------#
-# https://www.linuxtechi.com/how-to-install-pgadmin-on-ubuntu/
-## pgadmin installing
+### pgadmin installing
 
 sudo apt update && sudo apt install curl -y
 
