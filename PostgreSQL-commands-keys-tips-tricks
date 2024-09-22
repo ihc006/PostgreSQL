@@ -71,7 +71,7 @@ LIMIT 10;
 
 
 #----------------------------------------------------------------------------------------------------------------------#
-# sample calculation1 s
+# sample calculation1 s     :::: E-MultiSkills Database  services
 max_connections = 100
 shared_buffers = 128 MB
 
